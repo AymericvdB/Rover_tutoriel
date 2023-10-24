@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="Cylindre">
+    <static>true</static>
+    <link name="Cylindre">
+      <inertial>
+        <mass>100</mass>
+        <inertia>
+          <ixx>210.42</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>416.67</iyy>
+          <iyz>0</iyz>
+          <izz>210.42</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <length>4</length>
+            <radius>0.5</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <length>4</length>
+            <radius>0.5</radius>
+          </cylinder>
+        </geometry>
+        <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>1 0 0 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

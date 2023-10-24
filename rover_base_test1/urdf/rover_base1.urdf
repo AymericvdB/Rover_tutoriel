@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<robot name="rover_base">
+
+    <material name="blue">
+      <color rgba="0.0 0.0 1.0 1"/>
+    </material>
+    <material name="red">
+      <color rgba="1.0 0.0 0.0 1"/>
+    </material>
+    <material name="green">
+      <color rgba="0.0 1.0 0.0 1"/>
+    </material>
+    
+    <link name='base_link'> <!--root link needs to be named base_link in urdf-->
+        <inertial> <!--inertial properties of the link mass, inertia matix-->
+            <mass value="1.14395"/>
+            <inertia ixx="0.126164" ixy="0" ixz="0" iyy="0.416519" iyz="0" izz="0.481014"/>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <box size="2.0 1.0 0.5"/> <!--question: this size is in meter-->
+            </geometry>
+            <!--let's add color to our link-->
+            <material name="blue"/>
+        </visual>
+        <collision name='collision'> <!--todo: describe why we need the collision-->
+            <geometry>
+                <box size="2.0 1.0 0.5"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--let's build the left wheel-->
+    <link name='left_wheel'>
+        <inertial>
+            <mass value="2"/>
+            <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <cylinder radius="0.4" length="0.2"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision name='collision'>
+            <geometry>
+                <cylinder radius="0.4" length="0.2"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--copy and paste for right wheel but change position-->
+    <link name='right_wheel'>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <cylinder radius="0.4" length="0.2"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision name='collision'>
+            <geometry>
+                <cylinder radius="0.4" length="0.2"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--caster wheel-->
+    <link name='caster'>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <sphere radius="0.2"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+        <collision name='collision'>
+            <geometry>
+                <sphere radius="0.2"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name='inter1'>
+    </link>
+
+    <link name='inter2'>
+    </link>
+
+
+    <!--connecting these links together using joints-->
+    <joint name='left_wheel_joint' type='continuous'> <!--continous joint is not supported yet-->
+        <origin xyz="-0.5 0.6 0 " rpy="-1.5707 0 0"/>
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <!--<limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="1.0"/>-->
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name='right_wheel_joint' type='continuous'>
+        <origin xyz="-0.5 -0.6 0 " rpy="-1.5707 0 0"/>
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <!--<limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="1.0"/>-->
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!--different type of joints ball joint--> <!--defult value is the child-->
+    <joint name='caster_x' type='continuous'>
+        <origin xyz="0.8 0 -0.2" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="inter1"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <joint name='caster_y' type='continuous'>
+        <parent link="inter1"/>
+        <child link="inter2"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <joint name='caster_z' type='continuous'>
+        <parent link="inter2"/>
+        <child link="caster"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+</robot>

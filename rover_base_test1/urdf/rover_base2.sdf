@@ -1,0 +1,489 @@
+<sdf version="1.9">
+  <model name="rover_base2">
+    <link name="chassis">
+      <inertial>
+        <pose>0.09793796075358809 0 0.02678158054061754 0 0 0</pose>
+        <mass>1.40395</mass>
+        <inertia>
+          <ixx>0.13840811257167279</ixx>
+          <ixy>0</ixy>
+          <ixz>0.0036824673243349118</ixz>
+          <iyy>0.56654664296805435</iyy>
+          <iyz>0</iyz>
+          <izz>0.62079763039638158</izz>
+        </inertia>
+      </inertial>
+      <collision name="chassis_fixed_joint_lump__collision_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2 1 0.5</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="chassis_fixed_joint_lump__camera_link_collision_1">
+        <pose>1.1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="chassis_fixed_joint_lump__imu_link_collision_2">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="chassis_fixed_joint_lump__lidar_link_collision_3">
+        <pose>0 0 0.3 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="chassis_fixed_joint_lump__visual_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2 1 0.5</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+          <ambient>0 0 1 1</ambient>
+        </material>
+      </visual>
+      <visual name="chassis_fixed_joint_lump__camera_link_visual_1">
+        <pose>1.1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name="chassis_fixed_joint_lump__imu_link_visual_2">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.1</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name="chassis_fixed_joint_lump__lidar_link_visual_3">
+        <pose>0 0 0.3 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>1</always_on>
+      <update_rate>250</update_rate>
+      <topic>imu</topic>
+      <visualize>true</visualize>
+      <pose>0 0 0 0 0 0</pose>
+      <imu>
+        <enable_orientation>0</enable_orientation>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.009</stddev>
+              <bias_mean>0.00075</bias_mean>
+              <bias_stddev>0.005</bias_stddev>
+              <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+              <precision>0.00025</precision>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.009</stddev>
+              <bias_mean>0.00075</bias_mean>
+              <bias_stddev>0.005</bias_stddev>
+              <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+              <precision>0.00025</precision>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.009</stddev>
+              <bias_mean>0.00075</bias_mean>
+              <bias_stddev>0.005</bias_stddev>
+              <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+              <precision>0.00025</precision>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.021</stddev>
+              <bias_mean>0.05</bias_mean>
+              <bias_stddev>0.0075</bias_stddev>
+              <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+              <precision>0.005</precision>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.021</stddev>
+              <bias_mean>0.05</bias_mean>
+              <bias_stddev>0.0075</bias_stddev>
+              <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+              <precision>0.005</precision>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.021</stddev>
+              <bias_mean>0.05</bias_mean>
+              <bias_stddev>0.0075</bias_stddev>
+              <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+              <precision>0.005</precision>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+
+    <sensor name="lidar" type="gpu_lidar"> 
+        <pose>0 0 0.5 0 0 0</pose>
+        <update_rate>10</update_rate>
+        <topic>gpu_lidar</topic>
+        <visualize>true</visualize>
+        <lidar>
+            <scan>
+                <horizontal>
+                    
+                    <samples>360</samples> 
+                    <resolution>1</resolution>
+                    <min_angle>-3.141592654</min_angle>
+                    <max_angle>3.141592654</max_angle>
+                </horizontal>
+                
+            </scan>
+            <range>
+                <min>0.2</min>
+                <max>10.0</max>
+                <resolution>0.01</resolution>
+            </range>
+            <noise>
+                <type>gaussian</type>
+                <mean>0</mean>
+                
+                <stddev>0.01</stddev>
+            </noise>
+        </lidar>
+        <always_on>false</always_on>
+        <visualize>false</visualize>
+    </sensor>
+
+    <sensor name="camera_front" type="depth_camera">
+     <pose>1.2 0 0 0 0 0</pose>
+     <always_on>1</always_on>
+     <update_rate>20</update_rate>
+     <topic>camera_front</topic>
+     <visualize>true</visualize>
+     <camera name="camera_front">
+         
+         
+         <horizontal_fov>2</horizontal_fov>
+         <lens>
+             <intrinsics>
+               
+               <fx>1108.5</fx>
+               <fy>1108.5</fy>
+               
+               <cx>640.5</cx>
+               
+               <cy>480.5</cy>
+               <s>0</s>
+             </intrinsics>
+         </lens>
+         <distortion>
+             <k1>0.0</k1>
+             <k2>0.0</k2>
+             <k3>0.0</k3>
+             <p1>0.0</p1>
+             <p2>0.0</p2>
+             <center>0.5 0.5</center>
+         </distortion>
+         <image>
+             <width>1280</width>
+             <height>960</height>
+             <format>R8G8B8</format>
+         </image>
+         <clip>
+             <near>0.02</near>
+             <far>300</far>
+         </clip>
+         <noise>
+             <type>gaussian</type>
+             <mean>0</mean>
+             <stddev>0.007</stddev>
+         </noise>
+         <depth_camera>
+             <clip>
+                <near>0.2</near>
+                <far>10</far>
+             </clip>
+         </depth_camera>
+     </camera>
+    </sensor>
+  
+  </link>
+    <joint name="caster_x" type="revolute">
+      <pose relative_to="chassis">0.8 0 -0.2 0 0 0</pose>
+      <parent>chassis</parent>
+      <child>inter1</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="inter1">
+      <pose relative_to="caster_x">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-08</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-08</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="caster_y" type="revolute">
+      <pose relative_to="inter1">0 0 0 0 0 0</pose>
+      <parent>inter1</parent>
+      <child>inter2</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="inter2">
+      <pose relative_to="caster_y">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-08</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-08</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="caster_z" type="revolute">
+      <pose relative_to="inter2">0 0 0 0 0 0</pose>
+      <parent>inter2</parent>
+      <child>caster</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="caster">
+      <pose relative_to="caster_z">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name="caster_fixed_joint_lump__collision_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.20000000000000001</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="caster_fixed_joint_lump__visual_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.20000000000000001</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <diffuse>0 1 0 1</diffuse>
+          <ambient>0 1 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="left_wheel_joint" type="revolute">
+      <pose relative_to="chassis">-0.5 0.6 0 -1.570796326794896 0 0</pose>
+      <parent>chassis</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="left_wheel">
+      <pose relative_to="left_wheel_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.14583299999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.14583299999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      <collision name="left_wheel_fixed_joint_lump__collision_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="left_wheel_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="right_wheel_joint" type="revolute">
+      <pose relative_to="chassis">-0.5 -0.6 0 -1.570796326794896 0 0</pose>
+      <parent>chassis</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_wheel">
+      <pose relative_to="right_wheel_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.14583299999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.14583299999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_wheel_fixed_joint_lump__collision_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="right_wheel_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <frame name="base_link_to_chassis" attached_to="chassis">
+      <pose>0 0 0 0 -0 0</pose>
+    </frame>
+    <frame name="base_footprint" attached_to="base_link_to_chassis" />
+    <frame name="camera_joint" attached_to="chassis">
+      <pose>1.1 0 0 0 -0 0</pose>
+    </frame>
+    <frame name="camera_link" attached_to="camera_joint" />
+    <frame name="imu_joint" attached_to="chassis">
+      <pose>0 0 0.01 0 -0 0</pose>
+    </frame>
+    <frame name="imu_link" attached_to="imu_joint" />
+    <frame name="lidar_joint" attached_to="chassis">
+      <pose>0 0 0.3 0 -0 0</pose>
+    </frame>
+    <frame name="lidar_link" attached_to="lidar_joint" />
+  </model>
+</sdf>

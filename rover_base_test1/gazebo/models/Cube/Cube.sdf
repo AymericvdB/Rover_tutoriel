@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="Cube">
+    <static>true</static>
+    <link name="Cube">
+      <inertial>
+        <mass>100</mass>
+        <inertia>
+          <ixx>210.42</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>416.67</iyy>
+          <iyz>0</iyz>
+          <izz>210.42</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+            <box>
+                <size>1 1 1</size>
+            </box>
+        </geometry>
+        <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>1 0 0 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

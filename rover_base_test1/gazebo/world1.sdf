@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+<!--
+  Try sending commands:
+    gz topic -t "/model/diff_drive/cmd_vel" -m gz.msgs.Twist -p "linear: {x: 1.0}, angular: {z: -0.1}"
+    ros2 topic pub /diff_drive/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: -0.1}}"
+  Listen to odometry:
+    gz topic -e -t /model/diff_drive/odometry
+    ros2 topic echo /model/diff_drive/odometry
+-->
+<sdf version="1.8">
+  <world name="demo">
+    <plugin
+      filename="ignition-gazebo-physics-system"
+      name="ignition::gazebo::systems::Physics">
+    </plugin>
+    <plugin
+      filename="ignition-gazebo-sensors-system"
+      name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin
+      filename="ignition-gazebo-scene-broadcaster-system"
+      name="ignition::gazebo::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="ignition-gazebo-user-commands-system"
+      name="ignition::gazebo::systems::UserCommands">
+    </plugin>
+    <plugin
+      filename="ignition-gazebo-contact-system"
+      name="ignition::gazebo::systems::Contact">
+    </plugin>
+    <plugin 
+      filename="libignition-gazebo-imu-system.so"
+      name="ignition::gazebo::systems::Imu">
+    </plugin>
+    <!--<plugin
+      filename="BasicSystem"
+      name="ros_gz_example_gazebo::BasicSystem">
+    </plugin>
+    <plugin
+      filename="FullSystem"
+      name="ros_gz_example_gazebo::FullSystem">
+    </plugin>-->
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <include>
+      <pose>3 -1 0.5 0 0 0</pose>
+      <uri>home/aymeric/Documents/Programmation/ROS/rover_ws/src/rover_base_test1/gazebo/models/Cube</uri>
+      <name>Mur</name>
+    </include>
+
+    <include>
+      <pose>5 2 2 0 0 0</pose>
+      <uri>home/aymeric/Documents/Programmation/ROS/rover_ws/src/rover_base_test1/gazebo/models/Cylindre</uri>
+      <name>Cylindre</name>
+    </include>
+          
+    <include>
+      <pose>0 0 0.55 0 0 0</pose>
+      <!--<uri>home/aymeric/Documents/Programmation/ROS/rover_ws/src/rover_base_test1/urdf/rover_base3.urdf</uri>--> <!--Valide-->
+      <!--<uri>home/aymeric/Documents/Programmation/ROS/rover_ws/src/rover_base_test1/urdf/rover_base2.urdf</uri>-->
+      <uri>home/aymeric/Documents/Programmation/ROS/rover_ws/src/rover_base_test1/urdf/rover_base2.sdf</uri>
+      <!--<uri>home/aymeric/Documents/Programmation/ROS/rover_ws/src/rover_base_test1/gazebo/models/rover_base2</uri>--> <!--Valide-->
+      <!--<uri>models/rover_base2</uri>--> <!--valide avec gazebo directement, non valide dand le launch : trouver une solution-->
+      <name>rover_base2</name>
+
+      <plugin
+        filename="ignition-gazebo-joint-state-publisher-system"
+        name="ignition::gazebo::systems::JointStatePublisher">
+      </plugin>
+
+      <plugin
+        filename="ignition-gazebo-pose-publisher-system"
+        name="ignition::gazebo::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <static_publisher>true</static_publisher>
+        <static_update_frequency>1</static_update_frequency>
+      </plugin>
+
+      <plugin
+        filename="ignition-gazebo-odometry-publisher-system"
+        name="ignition::gazebo::systems::OdometryPublisher">
+        <odom_frame>rover_base2/odom</odom_frame>
+        <robot_base_frame>rover_base2</robot_base_frame>
+      </plugin>
+
+      <plugin
+          filename="ignition-gazebo-diff-drive-system"
+          name="ignition::gazebo::systems::DiffDrive">
+          <left_joint>left_wheel_joint</left_joint>
+          <right_joint>right_wheel_joint</right_joint>
+          <wheel_separation>1.2</wheel_separation>
+          <wheel_radius>0.4</wheel_radius>
+          <topic>cmd_vel</topic>
+          <odom_publish_frequency>1</odom_publish_frequency>
+          <max_linear_acceleration>1</max_linear_acceleration>
+          <min_linear_acceleration>-1</min_linear_acceleration>
+          <max_angular_acceleration>2</max_angular_acceleration>
+          <min_angular_acceleration>-2</min_angular_acceleration>
+          <max_linear_velocity>0.5</max_linear_velocity>
+          <min_linear_velocity>-0.5</min_linear_velocity>
+          <max_angular_velocity>1</max_angular_velocity>
+          <min_angular_velocity>-1</min_angular_velocity>
+      </plugin>
+
+    </include>
+
+  </world>
+</sdf>

@@ -1,0 +1,261 @@
+<sdf version='1.9'>
+  <model name='rover_base'>
+    <link name='rover_base2/chassis'>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1.14395</mass>
+        <inertia>
+          <ixx>0.126164</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.41651899999999997</iyy>
+          <iyz>0</iyz>
+          <izz>0.481014</izz>
+        </inertia>
+      </inertial>
+      <collision name='rover_base2/chassis_fixed_joint_lump__collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2 1 0.5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='rover_base2/chassis_fixed_joint_lump__visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2 1 0.5</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+          <ambient>0 0 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rover_base2/caster_x' type='revolute'>
+      <pose relative_to='rover_base2/chassis'>0.8 0 -0.2 0 0 0</pose>
+      <parent>rover_base2/chassis</parent>
+      <child>rover_base2/inter1</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rover_base2/inter1'>
+      <pose relative_to='rover_base2/caster_x'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-08</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-08</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name='rover_base2/caster_y' type='revolute'>
+      <pose relative_to='rover_base2/inter1'>0 0 0 0 0 0</pose>
+      <parent>rover_base2/inter1</parent>
+      <child>rover_base2/inter2</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rover_base2/inter2'>
+      <pose relative_to='rover_base2/caster_y'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-08</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-08</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name='rover_base2/caster_z' type='revolute'>
+      <pose relative_to='rover_base2/inter2'>0 0 0 0 0 0</pose>
+      <parent>rover_base2/inter2</parent>
+      <child>rover_base2/caster</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rover_base2/caster'>
+      <pose relative_to='rover_base2/caster_z'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='rover_base2/caster_fixed_joint_lump__collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.20000000000000001</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name='rover_base2/caster_fixed_joint_lump__visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.20000000000000001</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <diffuse>0 1 0 1</diffuse>
+          <ambient>0 1 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rover_base2/left_wheel_joint' type='revolute'>
+      <pose relative_to='rover_base2/chassis'>-0.5 0.6 0 -1.570796326794896 0 0</pose>
+      <parent>rover_base2/chassis</parent>
+      <child>rover_base2/left_wheel</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rover_base2/left_wheel'>
+      <pose relative_to='rover_base2/left_wheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.14583299999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.14583299999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      <collision name='rover_base2/left_wheel_fixed_joint_lump__collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rover_base2/left_wheel_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rover_base2/right_wheel_joint' type='revolute'>
+      <pose relative_to='rover_base2/chassis'>-0.5 -0.6 0 -1.570796326794896 0 0</pose>
+      <parent>rover_base2/chassis</parent>
+      <child>rover_base2/right_wheel</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rover_base2/right_wheel'>
+      <pose relative_to='rover_base2/right_wheel_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.14583299999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.14583299999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      <collision name='rover_base2/right_wheel_fixed_joint_lump__collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rover_base2/right_wheel_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.40000000000000002</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <frame name='rover_base2/base_link_to_chassis' attached_to='rover_base2/chassis'>
+      <pose>0 0 0 0 -0 0</pose>
+    </frame>
+    <frame name='base_footprint' attached_to='rover_base2/base_link_to_chassis'/>
+  </model>
+</sdf>

@@ -1,0 +1,174 @@
+  <link name="chassis">
+
+    <sensor name="imu_sensor" type="imu">
+      <always_on>1</always_on>
+      <update_rate>250</update_rate>
+      <topic>imu</topic>
+      <visualize>true</visualize>
+      <pose>0 0 0 0 0 0</pose>
+      <imu>
+        <enable_orientation>0</enable_orientation>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.009</stddev>
+              <bias_mean>0.00075</bias_mean>
+              <bias_stddev>0.005</bias_stddev>
+              <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+              <precision>0.00025</precision>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.009</stddev>
+              <bias_mean>0.00075</bias_mean>
+              <bias_stddev>0.005</bias_stddev>
+              <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+              <precision>0.00025</precision>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.009</stddev>
+              <bias_mean>0.00075</bias_mean>
+              <bias_stddev>0.005</bias_stddev>
+              <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+              <precision>0.00025</precision>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.021</stddev>
+              <bias_mean>0.05</bias_mean>
+              <bias_stddev>0.0075</bias_stddev>
+              <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+              <precision>0.005</precision>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.021</stddev>
+              <bias_mean>0.05</bias_mean>
+              <bias_stddev>0.0075</bias_stddev>
+              <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+              <precision>0.005</precision>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.021</stddev>
+              <bias_mean>0.05</bias_mean>
+              <bias_stddev>0.0075</bias_stddev>
+              <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+              <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+              <precision>0.005</precision>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+
+    <sensor name="lidar" type="gpu_lidar"> <!--type=gpu_lidar-->
+        <pose>0 0 0.5 0 0 0</pose>
+        <update_rate>10</update_rate>
+        <topic>gpu_lidar</topic>
+        <visualize>true</visualize>
+        <lidar>
+            <scan>
+                <horizontal>
+                    <!-- Real samples value is 1800 -->
+                    <samples>360</samples> <!--1800-->
+                    <resolution>1</resolution>
+                    <min_angle>-3.141592654</min_angle>
+                    <max_angle>3.141592654</max_angle>
+                </horizontal>
+                <!--<vertical>
+                    <samples>1</samples>
+                    <resolution>1</resolution>
+                    <min_angle>-0.261799388</min_angle>
+                    <max_angle>0.261799388</max_angle>
+                </vertical>-->
+            </scan>
+            <range>
+                <min>0.2</min>
+                <max>10.0</max>
+                <resolution>0.01</resolution>
+            </range>
+            <noise>
+                <type>gaussian</type>
+                <mean>0</mean>
+                <!-- Change the sdfdev value to 0.01 to add noise in to the sensor. You can set other values if you want. -->
+                <stddev>0.01</stddev>
+            </noise>
+        </lidar>
+        <always_on>false</always_on>
+        <visualize>false</visualize>
+    </sensor>
+
+    <sensor name="camera_front" type="depth_camera">
+     <pose>1.2 0 0 0 0 0</pose>
+     <always_on>1</always_on>
+     <update_rate>20</update_rate>
+     <topic>camera_front</topic>
+     <visualize>true</visualize>
+     <camera name="camera_front">
+         <!--<cameraInfoTopicName>camera_info</cameraInfoTopicName>-->
+         <!--<hackBaseline>0.07</hackBaseline>-->
+         <horizontal_fov>2</horizontal_fov>
+         <lens>
+             <intrinsics>
+               <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+               <fx>1108.5</fx>
+               <fy>1108.5</fy>
+               <!-- cx = ( width + 1 ) / 2 -->
+               <cx>640.5</cx>
+               <!-- cy = ( height + 1 ) / 2 -->
+               <cy>480.5</cy>
+               <s>0</s>
+             </intrinsics>
+         </lens>
+         <distortion>
+             <k1>0.0</k1>
+             <k2>0.0</k2>
+             <k3>0.0</k3>
+             <p1>0.0</p1>
+             <p2>0.0</p2>
+             <center>0.5 0.5</center>
+         </distortion>
+         <image>
+             <width>1280</width>
+             <height>960</height>
+             <format>R8G8B8</format>
+         </image>
+         <clip>
+             <near>0.02</near>
+             <far>300</far>
+         </clip>
+         <noise>
+             <type>gaussian</type>
+             <mean>0</mean>
+             <stddev>0.007</stddev>
+         </noise>
+         <depth_camera>
+             <clip>
+                <near>0.2</near>
+                <far>10</far>
+             </clip>
+         </depth_camera>
+     </camera>
+    </sensor>
+  
+  </link>
