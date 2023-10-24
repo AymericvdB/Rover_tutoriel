@@ -11,13 +11,19 @@ Voir le [tutoriel](https://navigation.ros.org/setup_guides/index.html) original.
 ### Installation
 
 Installer ROS2 Humble : suivre ces ([instructions](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html))
+
 Installer Gazebosim (Ignition) Fortress : suivre ces ([instructions](https://gazebosim.org/docs/fortress/install_ubuntu))
 
-Installer le package 'ros_gz' (qui comprend entre autres 'ros_gz_bridge') : ' sudo apt install ros-humble-ros-gz'
-Installer le package 'robot_localization' : 'sudo apt install ros-humble-robot-localization'
-Installer le package 'slam_toolbox' : 'sudo apt install ros-humble-slam-toolbox'
-Installer le package 'nav2' : 'sudo apt install ros-humble-navigation2'
-                              'sudo apt install ros-humble-nav2-bringup'
+
+Installer le package `ros_gz` (qui comprend entre autres `ros_gz_bridge`) : `sudo apt install ros-humble-ros-gz`
+
+Installer le package `robot_localization` : `sudo apt install ros-humble-robot-localization`
+
+Installer le package `slam_toolbox` : `sudo apt install ros-humble-slam-toolbox`
+
+Installer le package `nav2` : 
+ - `sudo apt install ros-humble-navigation2`
+ - `sudo apt install ros-humble-nav2-bringup`
 
 Nota : 
     Plusieurs distributions de Gazebosim peuvent coexister; il faut simplement préciser la version à lancer dans l'invite de commande.
@@ -62,6 +68,7 @@ Retourner dans le dossier workspace et lancer la compilation
 
 Une fois la compliation terminée, sourcer le contenu du workspace (comme le précédent, à lancer pour chaque nouveau terminal ouvert):
     'source install/setup.bash'
+
 
 Référence [ici](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)
 
