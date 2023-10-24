@@ -3,10 +3,7 @@
 Ce package applique le tutoriel décrit dans la documentation du package nav2 de ROS2, en utilisant GazeboSim à la place de GazeboClassic;
 Voir le [tutoriel](https://navigation.ros.org/setup_guides/index.html) original.
 
-
-## Instructions (version courte)
-
-## Instructions (version longue)
+## Instructions
 
 ### Installation
 
@@ -15,15 +12,22 @@ Installer ROS2 Humble : suivre ces [instructions](https://docs.ros.org/en/humble
 Installer Gazebosim (Ignition) Fortress : suivre ces [instructions](https://gazebosim.org/docs/fortress/install_ubuntu)
 
 
-Installer le package `ros_gz` (qui comprend entre autres `ros_gz_bridge`) : `sudo apt install ros-humble-ros-gz`
+Installer le package `ros_gz` (qui comprend entre autres `ros_gz_bridge`) : 
 
-Installer le package `robot_localization` : `sudo apt install ros-humble-robot-localization`
+    sudo apt install ros-humble-ros-gz
 
-Installer le package `slam_toolbox` : `sudo apt install ros-humble-slam-toolbox`
+Installer le package `robot_localization` : 
+
+    sudo apt install ros-humble-robot-localization
+
+Installer le package `slam_toolbox` : 
+
+    sudo apt install ros-humble-slam-toolbox
 
 Installer le package `nav2` : 
- - `sudo apt install ros-humble-navigation2`
- - `sudo apt install ros-humble-nav2-bringup`
+
+    sudo apt install ros-humble-navigation2
+    sudo apt install ros-humble-nav2-bringup
 
 #### Nota : 
 
@@ -104,7 +108,7 @@ Sélectionner un fichier launch à lancer. Exemple:
 Ce package est configuré pour accueillir des fichiers source c++ (on n'a pas eu besoin ici de coder des noeuds ROS pour cette exemple). Il est aussi possible d'en configurer pour coder en python (Les fichiers launch ne comptent pas : ils peuvent être écrits indifféremment en python, XML ou YAML). Lorsqu'un package est en Python (comme le package teleop qui accompagne ce package), la compilation a tendance à ne pas copier certains launch dans le bon dossier, causant des erreurs au lancement : personnellement, je les mets alors à leur place à la main.
 
 
-#### Nota2 :
+#### Nota 2 :
 
 Les fichiers launch permettent de lancer différents noeuds de différents package et d'effectuer d'autres manipulations comme des commandes bash, etc. Ils permettent donc de gagner pas mal de temps.
 
@@ -115,7 +119,7 @@ Pourquoi ne pas inclure les capteurs dans une balise <gazebo> dès le Xacro? Par
 Documentation :  [launch](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-Main.html)
 
 
-#### Nota3 : 
+#### Nota 3 : 
 
 Pour rappel : 
 - un URDF est un format de fichier XML qui décrit un robot dans un langage compréhensible par ROS2.
@@ -129,7 +133,7 @@ Documentations des différents formats :
 - SDF : [tutoriel](https://gazebosim.org/docs/fortress/building_robot) ; [référence](http://sdformat.org/spec)
 
 
-#### Nota4 :
+#### Nota 4 :
 
 La stratégie utilisée me permet de maintenir un seul fichier Xacro, à partir duquel je génère les autres. Il est aussi possible de faire des conversions SDF->URDF (voir [ici](https://gazebosim.org/docs/harmonic/ros2_interop)), mais le SDF ne supporte pas les macros (qui sont très pratiques) et n'est pas généré directement à partir du Xacro.
 
@@ -216,6 +220,10 @@ Ce launch ajoute deux nouveaux noeuds :
 - slam_node : issu du package slam_toolbox, il utilise les données du lidar pour appliquer le SLAM : un algorithme qui consiste à cartographier une zone tout en se repérant à l'intérieur. La carte est publiée sur le topic /map et visualisable sur Rviz.
 - nav2_node : on lance ici un launch du package nav2 pour obtenir entre autres des costmap (cartes de coût) qui sont elles aussi visualisables sur Rviz (/global_costmap et /local_costmap).
 
+Ci-dessous une représentation de la gloabl costmap obtenue : 
+
+![global_costmap](/rover_base_test1/img/Global_costmap.png?raw=true "Global costmap")
+
 
 Voir la page [wikipedia](https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping) du SLAM
 
@@ -241,5 +249,3 @@ Et si on veut faire de la reconnaissance d'images? Quelques bibliothèques pytho
 - [OpenCV](https://docs.opencv.org/4.8.0/) (masques, reconnaissance de contours...)
 - [Tensorflow](https://www.tensorflow.org/tutorials?hl=fr) (deep learning)
 - [Pytorch](https://pytorch.org/tutorials/) (deep learning)
-
-
