@@ -1,4 +1,4 @@
-# Modelisation d'un petit véhicule terrestre sous ROS et Gazebo
+# Modélisation d'un petit véhicule terrestre sous ROS et Gazebo
 
 Ce package applique le tutoriel décrit dans la documentation du package nav2 de ROS2, en utilisant GazeboSim à la place de GazeboClassic;
 Voir le [tutoriel](https://navigation.ros.org/setup_guides/index.html) original.
@@ -28,6 +28,12 @@ Installer le package `nav2` :
 
     sudo apt install ros-humble-navigation2
     sudo apt install ros-humble-nav2-bringup
+
+Installer le package `xacro` : 
+
+    sudo apt install ros-humble-xacro
+
+Dans le dossier gazebo du package, se trouvent deux fichiers : world1.sdf et world2.sdf, qui font appel à des modèles du dossier models à côté avec des chemins absolus (que je n'ai pour le moment pas réussi à mettre en relatif). Il faut donc tous les modifier, sous peine d'avoir des erreurs au lancement.
 
 #### Nota : 
 
@@ -124,7 +130,7 @@ Documentation :  [launch](https://docs.ros.org/en/humble/Tutorials/Intermediate/
 Pour rappel : 
 - un URDF est un format de fichier XML qui décrit un robot dans un langage compréhensible par ROS2.
 - un Xacro est un URDF sur lequel on applique des macros python, ce qui permet d'avoir un fichier souvent beaucoup moins long et d'utiliser des variables, des conditions... pour éditer plus facilement le robot.
-- Un SDF est un format de fichier XML compréhensible par GazeboSim (et GazeboClassic) qui peut décrire un robot, un monde avec des robots, des paramètres de simulation... Il est donc plus complet qu'un URDF. De plus, si la logique de description de robot est la même, ily a des éléments et des différences syntaxiques qui rendent nécessaire une traduction; ROS2 n'est pas capable de lire un SDF, mais GazeboSim est capable de lire un URDF décrivant un robot pour l'inclure dans un monde.
+- Un SDF est un format de fichier XML compréhensible par GazeboSim (et GazeboClassic) qui peut décrire un robot, un monde avec des robots, des paramètres de simulation... Il est donc plus complet qu'un URDF. De plus, si la logique de description de robot est la même, il y a des éléments et des différences syntaxiques qui rendent nécessaire une traduction; ROS2 n'est pas capable de lire un SDF, mais GazeboSim est capable de lire un URDF décrivant un robot pour l'inclure dans un monde.
 
 
 Documentations des différents formats : 
@@ -249,3 +255,7 @@ Et si on veut faire de la reconnaissance d'images? Quelques bibliothèques pytho
 - [OpenCV](https://docs.opencv.org/4.8.0/) (masques, reconnaissance de contours...)
 - [Tensorflow](https://www.tensorflow.org/tutorials?hl=fr) (deep learning)
 - [Pytorch](https://pytorch.org/tutorials/) (deep learning)
+
+## Mention spéciale
+
+A Alexis pour avoir été le cobaye du test de ce tutoriel et en avoir supporté pendant deux heures tout le débogage.
